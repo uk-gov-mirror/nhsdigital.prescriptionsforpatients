@@ -19,6 +19,8 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    env:
+      RETAIN_SAM_RESOURCES: true
 
     steps:
       - name: Checkout local github scripts
@@ -42,6 +44,7 @@ jobs:
         run: ./delete_stacks.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RETAIN_SAM_RESOURCES: ${{ env.RETAIN_SAM_RESOURCES }}
 
   delete-old-proxygen-deployments:
     runs-on: ubuntu-22.04

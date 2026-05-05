@@ -14,9 +14,17 @@ PULL_REQUEST_STACK_REGEX=pfp-pr-
 
 # this should be a query to get old CNAME records to delete
 CNAME_QUERY=pfp-pr-
+RETAIN_SAM_RESOURCES=${RETAIN_SAM_RESOURCES:-true}
 
 main() {
+  echo "retain SAM resources mode: ${RETAIN_SAM_RESOURCES}"
   delete_cloudformation_stacks
+
+  if [[ "${RETAIN_SAM_RESOURCES}" == "true" ]]; then
+    echo "Skipping CNAME cleanup because stack resources are being retained"
+    return
+  fi
+
   delete_cname_records
 }
 

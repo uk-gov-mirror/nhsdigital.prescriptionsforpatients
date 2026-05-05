@@ -144,6 +144,8 @@ Conditions:
 Resources:
   Apis:
     Type: AWS::Serverless::Application
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Location: apis/main.yaml
       Parameters:
@@ -163,6 +165,8 @@ Resources:
 
   Parameters:
     Type: AWS::Serverless::Application
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Location: parameters/main.yaml
       Parameters:
@@ -173,6 +177,8 @@ Resources:
       
   Functions:
     Type: AWS::Serverless::Application
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Location: functions/main.yaml
       Parameters:
@@ -204,6 +210,8 @@ Resources:
   Secrets:
     Type: AWS::Serverless::Application
     Condition: IsNonPullRequestDeployment
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Location: secrets/main.yaml
       Parameters:
@@ -211,6 +219,8 @@ Resources:
 
   StateMachines:
     Type: AWS::Serverless::Application
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Location: state_machines/main.yaml
       Parameters:
@@ -225,6 +235,8 @@ Resources:
 
   Alarms:
     Type: AWS::Serverless::Application
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Location: alarms/main.yaml
       Parameters:
