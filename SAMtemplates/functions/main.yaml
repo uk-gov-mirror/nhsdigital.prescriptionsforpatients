@@ -91,6 +91,8 @@ Parameters:
 Resources:
   GetSecretsLayer:
     Type: AWS::Serverless::LayerVersion
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       LayerName: get-secrets-layer
       Description: get secrets layer
@@ -99,6 +101,8 @@ Resources:
 
   GetMyPrescriptions:
     Type: AWS::Serverless::Function
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       FunctionName: !Sub ${StackName}-GetMyPrescriptions
       CodeUri: ../../packages
@@ -131,6 +135,8 @@ Resources:
 
   GetMyPrescriptionsResources:
     Type: AWS::Serverless::Application
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Location: lambda_resources.yaml
       Parameters:
@@ -152,6 +158,8 @@ Resources:
 
   EnrichPrescriptions:
     Type: AWS::Serverless::Function
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       FunctionName: !Sub ${StackName}-EnrichPrescriptions
       CodeUri: ../../packages
@@ -180,6 +188,8 @@ Resources:
 
   EnrichPrescriptionsResources:
     Type: AWS::Serverless::Application
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Location: lambda_resources.yaml
       Parameters:
@@ -198,6 +208,8 @@ Resources:
 
   CapabilityStatement:
     Type: AWS::Serverless::Function
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       FunctionName: !Sub ${StackName}-CapabilityStatement
       CodeUri: ../../packages
@@ -221,6 +233,8 @@ Resources:
 
   CapabilityStatementResources:
     Type: AWS::Serverless::Application
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Location: lambda_resources.yaml
       Parameters:
@@ -235,6 +249,8 @@ Resources:
 
   Status:
     Type: AWS::Serverless::Function
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       FunctionName: !Sub ${StackName}-status
       CodeUri: ../../packages
@@ -265,6 +281,8 @@ Resources:
 
   StatusResources:
     Type: AWS::Serverless::Application
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Location: lambda_resources.yaml
       Parameters:

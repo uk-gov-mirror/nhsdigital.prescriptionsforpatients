@@ -37,6 +37,8 @@ Parameters:
 Resources:
   GetMyPrescriptionsStateMachine:
     Type: AWS::Serverless::StateMachine
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Name: !Sub ${StackName}-GetMyPrescriptions
       Type: EXPRESS
@@ -60,6 +62,8 @@ Resources:
 
   GetMyPrescriptionsStateMachineResources:
     Type: AWS::Serverless::Application
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Location: state_machine_resources.yaml
       Parameters:

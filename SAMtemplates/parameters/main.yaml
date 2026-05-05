@@ -18,6 +18,8 @@ Parameters:
 Resources:
   TC007NHSNumberParameter:
     Type: AWS::SSM::Parameter
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Name: !Sub ${StackName}-TC007NHSNumber
       Description: "List of NHS numbers that will trigger 'temporarily unavailable' response for testing purposes."
@@ -26,6 +28,8 @@ Resources:
 
   TC008NHSNumberParameter:
     Type: AWS::SSM::Parameter
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Name: !Sub ${StackName}-TC008NHSNumber
       Description: "List of NHS numbers that will trigger '500 system error' response for testing purposes."
@@ -34,6 +38,8 @@ Resources:
 
   TC009NHSNumberParameter:
     Type: AWS::SSM::Parameter
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Name: !Sub ${StackName}-TC009NHSNumber
       Description: "List of NHS numbers that will trigger 'one or more prescriptions missing' response for testing purposes."
@@ -42,6 +48,8 @@ Resources:
 
   GetPfPParameterPolicy:
     Type: AWS::IAM::ManagedPolicy
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Description: "Allows reading SSM parameters"
       PolicyDocument:

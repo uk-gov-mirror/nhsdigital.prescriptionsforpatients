@@ -37,6 +37,8 @@ Conditions:
 Resources:
   ApiGwRole:
     Type: AWS::IAM::Role
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       AssumeRolePolicyDocument:
         Version: 2012-10-17
@@ -61,6 +63,8 @@ Resources:
 
   ApiGwAccessLogs:
     Type: AWS::Logs::LogGroup
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Metadata:
       guard:
         SuppressedRules:
@@ -73,6 +77,8 @@ Resources:
   ApiGwAccessLogsSplunkSubscriptionFilter:
     Condition: ShouldUseSplunk
     Type: AWS::Logs::SubscriptionFilter
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       RoleArn: !ImportValue account-resources-cdk-uk:IAM:SplunkSubscriptionFilterRole:Arn
       LogGroupName: !Ref ApiGwAccessLogs
@@ -82,6 +88,8 @@ Resources:
   ApiGwAccessLogsCsocSubscriptionFilter:
     Condition: ShouldForwardCsocLogs
     Type: AWS::Logs::SubscriptionFilter
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       RoleArn: !ImportValue account-resources-cdk-uk:IAM:SplunkSubscriptionFilterRole:Arn
       LogGroupName: !Ref ApiGwAccessLogs

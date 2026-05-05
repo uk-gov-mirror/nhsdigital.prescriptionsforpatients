@@ -19,6 +19,8 @@ Parameters:
 Resources:
   ServiceSearchErrorsLogsMetricFilter:
     Type: AWS::Logs::MetricFilter
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       FilterName: ServiceSearchErrors
       # Match logs with $.message starting with "error in request to serviceSearch"
@@ -36,6 +38,8 @@ Resources:
 
   ServiceSearchErrorsAlarm:
     Type: AWS::CloudWatch::Alarm
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       AlarmDescription: Count of Service Search errors
       AlarmName: !Sub ${StackName}_ServiceSearch_Errors
@@ -61,6 +65,8 @@ Resources:
 
   ServiceSearchUnhandledErrorsAlarm:
     Type: AWS::CloudWatch::Alarm
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       AlarmDescription: Count of Service Search unhandled errors
       AlarmName: !Sub ${StackName}_ServiceSearch_UnhandledErrors
@@ -86,6 +92,8 @@ Resources:
 
   GetMyPrescriptionsErrorsLogsMetricFilter:
     Type: AWS::Logs::MetricFilter
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       FilterName: !Sub ${StackName}_GetMyPrescriptionsErrors
       FilterPattern: !Sub '{ ($.level = "ERROR") && ($.function_name = "${GetMyPrescriptionsFunctionName}") && ($.message != %error in request to serviceSearch%) }'
@@ -102,6 +110,8 @@ Resources:
 
   GetMyPrescriptionsErrorsAlarm:
     Type: AWS::CloudWatch::Alarm
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       AlarmDescription: Count of GetMyPrescriptions errors
       AlarmName: !Sub ${StackName}_GetMyPrescriptions_Errors
@@ -127,6 +137,8 @@ Resources:
 
   EnrichPrescriptionsErrorsLogsMetricFilter:
     Type: AWS::Logs::MetricFilter
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       FilterName: !Sub ${StackName}_EnrichPrescriptionsErrors
       FilterPattern: ERROR
@@ -140,6 +152,8 @@ Resources:
 
   EnrichPrescriptionsErrorsAlarm:
     Type: AWS::CloudWatch::Alarm
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       AlarmDescription: Count of EnrichPrescriptions errors
       AlarmName: !Sub ${StackName}_EnrichPrescriptions_Errors

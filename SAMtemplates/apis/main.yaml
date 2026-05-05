@@ -57,6 +57,8 @@ Conditions:
 Resources:
   GenerateCertificate:
     Type: AWS::CertificateManager::Certificate
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       ValidationMethod: DNS
       DomainName:
@@ -73,6 +75,8 @@ Resources:
 
   RestApiGateway:
     Type: AWS::ApiGateway::RestApi
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Name: !Sub ${StackName}-apigw
       DisableExecuteApiEndpoint: !If
@@ -85,6 +89,8 @@ Resources:
 
   RestApiDomain:
     Type: AWS::ApiGateway::DomainName
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       DomainName: !Join
         - .
@@ -115,6 +121,8 @@ Resources:
 
   RestApiRecordSet:
     Type: AWS::Route53::RecordSet
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Name: !Join
         - .
@@ -128,6 +136,8 @@ Resources:
 
   GetMyPrescriptionsResource:
     Type: AWS::ApiGateway::Resource
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       RestApiId: !Ref RestApiGateway
       ParentId: !GetAtt RestApiGateway.RootResourceId
@@ -135,6 +145,8 @@ Resources:
 
   GetMyPrescriptionsMethod:
     Type: AWS::ApiGateway::Method
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       RestApiId: !Ref RestApiGateway
       ResourceId: !Ref GetMyPrescriptionsResource
@@ -229,6 +241,8 @@ Resources:
 
   CapabilityStatementResource:
     Type: AWS::ApiGateway::Resource
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       RestApiId: !Ref RestApiGateway
       ParentId: !GetAtt RestApiGateway.RootResourceId
@@ -236,6 +250,8 @@ Resources:
 
   CapabilityStatementMethod:
     Type: AWS::ApiGateway::Method
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       RestApiId: !Ref RestApiGateway
       ResourceId: !Ref CapabilityStatementResource
@@ -249,6 +265,8 @@ Resources:
 
   StatusStatementResource:
     Type: AWS::ApiGateway::Resource
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       RestApiId: !Ref RestApiGateway
       ParentId: !GetAtt RestApiGateway.RootResourceId
@@ -256,6 +274,8 @@ Resources:
 
   StatusMethod:
     Type: AWS::ApiGateway::Method
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       RestApiId: !Ref RestApiGateway
       ResourceId: !Ref StatusStatementResource
@@ -273,6 +293,8 @@ Resources:
   # *********************************************************************
   RestApiGatewayDeployment:
     Type: AWS::ApiGateway::Deployment
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     DependsOn:
       # see note above if you add something in here when you add a new endpoint
       - GetMyPrescriptionsMethod
@@ -283,6 +305,8 @@ Resources:
 
   RestApiGatewayStage:
     Type: AWS::ApiGateway::Stage
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       RestApiId: !Ref RestApiGateway
       StageName: prod
@@ -295,6 +319,8 @@ Resources:
 
   RestApiDomainMapping:
     Type: AWS::ApiGateway::BasePathMapping
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       DomainName: !Ref RestApiDomain
       RestApiId: !Ref RestApiGateway
@@ -302,6 +328,8 @@ Resources:
 
   RestApiGatewayResources:
     Type: AWS::Serverless::Application
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Location: api_resources.yaml
       Parameters:
